@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace TestiRecord.API.Controllers.Api
             _testiService = testiService;
         }
 
+        [AllowAnonymous]
         [HttpGet("GetAllPrayerRequests")]
         public async Task<List<PrayerRequest>> GetAllPrayerRequests()
         {
@@ -28,6 +30,7 @@ namespace TestiRecord.API.Controllers.Api
             return data;
         }
 
+        [AllowAnonymous]
         [HttpGet("GetPrayerRequest")]
         public async Task<PrayerRequest> GetPrayerRequest(int id)
         {
@@ -35,6 +38,7 @@ namespace TestiRecord.API.Controllers.Api
             return await _testiService.GetPrayerRequest(id);
         }
 
+        [AllowAnonymous]
         [HttpGet("GetHealedPrayerRequest")]
         public async Task<List<PrayerRequest>> GetHealedPrayerRequest()
         {
@@ -42,6 +46,7 @@ namespace TestiRecord.API.Controllers.Api
             return await _testiService.GetHealedPrayerRequest();
         }
 
+        [AllowAnonymous]
         [HttpGet("GetStillProcessPrayerRequest")]
         public async Task<List<PrayerRequest>> GetStillProcessPrayerRequest()
         {
@@ -49,6 +54,7 @@ namespace TestiRecord.API.Controllers.Api
             return await _testiService.GetStillProcessPrayerRequest();
         }
 
+        [AllowAnonymous]
         [HttpPut("AddOrEditPrayerRequest")]
         public async Task<bool> AddOrEditPrayerRequest(PrayerRequest prayerRequest)
         {
@@ -62,6 +68,8 @@ namespace TestiRecord.API.Controllers.Api
             
         }
 
+
+        [AllowAnonymous]
         [HttpPut("UpdatePrayerRequest")]
         public async Task<bool> UpdatePrayerRequest(PrayerRequest prayerRequest)
         {
@@ -69,6 +77,8 @@ namespace TestiRecord.API.Controllers.Api
             return await _testiService.UpdatePrayerRequest(prayerRequest);
         }
 
+
+        [AllowAnonymous]
         [HttpDelete("DeletePrayerRequest")]
         public async Task<bool> DeletePrayerRequest(int id)
         {
